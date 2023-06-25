@@ -17,6 +17,14 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    'company' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Company::class,
+    ],
+    'student' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Student::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +47,14 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'company' => [
+            'driver' => 'session',
+            'provider' => 'companies',
+        ],
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
         ],
     ],
 
@@ -69,6 +85,15 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'companies' => [
+            'driver'=> 'eloquent',
+            'model' => App\Models\Company::class,
+        ],
+        'students' => [
+            'driver'=> 'eloquent',
+            'model' => App\Models\Student::class,
+        ],
     ],
 
     /*
@@ -97,6 +122,14 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'companies'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Company::class,
+        ],
+        'students'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Student::class,
+        ]
     ],
 
     /*
