@@ -24,8 +24,16 @@ Route::post('/logincheck',[GuestController::class, 'LoginCheck'] );
 
 Route::prefix('Company')->name('Company.')->group(function(){
     Route::middleware(['auth:company'])->group(function(){
-        Route::view('/home', 'Company.home')->name('home');
+        Route::view('/home', 'Company.addvacancy')->name('home');
         Route::get('/logout', [CompanyController::class, 'logout'])->name('logout');
+        Route::post('/storevacancy', [CompanyController::class, 'AddVacancy'])->name('storevacancy');
+        Route::get('/myposts', [CompanyController::class, 'MyPosts'])->name('myposts');
+        Route::get('/editvacancy/{vacancy_id}', [CompanyController::class, 'EditVacancy'])->name('editvacancy');
+        Route::post('/updatevacancy/{vacancy_id}', [CompanyController::class, 'UpdateVacancy'])->name('updatevacancy');
+        Route::get('/deletevacancy/{vacancy_id}', [CompanyController::class, 'DeleteVacancy'])->name('deletevacancy');
+        Route::get('/aboutmycompany', [CompanyController::class, 'AboutMyCompany'])->name('aboutmycompany');
+        Route::post('/editComData', [CompanyController::class, 'EditCompanyData'])->name('editComData');
+        Route::get('/deletemyaccount', [CompanyController::class, 'DeleteMyAccount'])->name('deletemyaccount');
     });
 });
 
