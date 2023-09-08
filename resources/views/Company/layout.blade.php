@@ -11,17 +11,17 @@
 </head>
 
 <body style="background-color: #88738E;">
-    <br>
+    <div id="popup-message"></div>
 	
     <div class="container p-3" style="background-color: #ffffff;">
         <!-- HEADER DIV -->
 			<div class="row header">
-				<div class="col-lg-3 col-4">
-				<img src="{{ asset ( 'images/WorkplaceIcon.png') }}" alt="Company Logo" style=" height:64px; width: auto;" class="companyLogo">
+				<div class="col-lg-2 col-4">
+				<img src="{{ asset ( 'images/WorkplaceIcon.png') }}" alt="Company Logo" style=" width: 100%; height:auto; " class="companyLogo">
 				</div>
-				<div class="col-lg-7 col-5 ">
+				<div class="col-lg-8 col-4 ">
 				</div>
-				<div class="col-lg-2 col-3 ">
+				<div class="col-lg-2 col-4 ">
                     
 				    <a href="{{route('Company.aboutmycompany')}}" id="NoUnderline"><img src="{{ asset('storage/'.Auth::guard('company')->user()->profilePic) }}" alt="profile pic" style="width: 34px; height: 34px;" class="usericon rounded-pill"><br>{{Auth::guard('company')->user()->name}}</a><br>
                     <a href="{{route('Company.logout')}}" onclick="event.preventDefualt(); document.getElementById('logout-form').submit();"> Logout</a>
@@ -46,4 +46,20 @@
 </div>
 <br>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var message = "{{ session('message') }}";
+
+        if (message) {
+            var popup = document.getElementById('popup-message');
+            popup.textContent = message;
+            popup.style.display = 'block';
+
+            setTimeout(function () {
+                popup.style.animation = 'fadeOut 1s';
+                popup.style.display = 'none';
+            }, 5000); // Show for 5 seconds and then fade out
+        }
+    });
+</script>
 </html>

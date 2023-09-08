@@ -34,6 +34,7 @@ Route::prefix('Company')->name('Company.')->group(function(){
         Route::get('/aboutmycompany', [CompanyController::class, 'AboutMyCompany'])->name('aboutmycompany');
         Route::post('/editComData', [CompanyController::class, 'EditCompanyData'])->name('editComData');
         Route::get('/deletemyaccount', [CompanyController::class, 'DeleteMyAccount'])->name('deletemyaccount');
+        Route::get('/message', [CompanyController::class, 'AllMessages'])->name('message');
     });
 });
 

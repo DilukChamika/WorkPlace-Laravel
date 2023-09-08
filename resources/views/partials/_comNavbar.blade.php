@@ -6,7 +6,7 @@
         <a class="nav-link  {{ Request::path() == 'Company/home' ? 'active' : '' }}" href="{{route('Company.home')}}"> <img src="{{ asset ('images/icon/addpost.png') }}" alt="Add Post" style="width: 34px; height: 34px;" class="btnicon"> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Request::path() == 'commsg'  || Request::path() == 'commsgbody' ? 'active' : '' }}" href="{% url 'stumsg' studb.stuid %}"><img src="{{ asset ('images/icon/msgwhite.png') }}" alt="Messages" style="width: 34px; height: 34px;" class="btnicon"></a>
+        <a class="nav-link {{ Request::path() == 'Company/message'  || Request::path() == 'Company/msgbody' ? 'active' : '' }}" href="{{route('Company.message')}}"><img src="{{ asset ('images/icon/msgwhite.png') }}" alt="Messages" style="width: 34px; height: 34px;" class="btnicon"></a>
       </li>
       <li class="nav-item">
         <a class="nav-link  {{ Request::path() == 'comnotification' ? 'active' : '' }}" href="{% url 'StuNotifications' studb.stuid %}"><img src="{{ asset ('images/icon/notificationwhite.png') }}" alt="Notification" style="width: 34px; height: 34px;" class="btnicon"></a>

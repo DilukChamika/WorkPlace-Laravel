@@ -130,7 +130,7 @@ img.feedtitleicon{
 
 .addpost{
 	margin: auto;
-	width: 70%;
+	/* width: 70%; */
 	border: 3px solid #f64c72;
 	padding: 10px;
 	font-weight: bold;
@@ -491,3 +491,33 @@ img.feedtitleicon{
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
   }
+
+  .heading{
+	text-align: center;
+	font-weight: bold;
+    font-size: 1.17em; 
+  }
+
+  #popup-message {
+	display: none;
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #a8f375; /* Background color for success message */
+	color: #ff0000;
+	padding: 10px 20px;
+	border-radius: 5px;
+	animation: fadeOut 5s;
+}
+
+@keyframes fadeOut {
+	0% { opacity: 1; }
+	90% { opacity: 1; }
+	100% { opacity: 0; display: none; }
+}
+
+.input-error{
+	font-size: small;
+	color: red;
+}

@@ -2,8 +2,6 @@
 
 @section('title', 'My Posts')
 
-<br>
-
 @section('content')
 <hr style="color:#242582; height:3px;">
 	@foreach ($vacancies as $vacancy)
@@ -14,7 +12,7 @@
 					<div class="col-lg-10" align="center">
 						<div class="feedposttitle" align="left">
 							<h3><img src="{{asset('storage/'.$vacancy->company->profilePic)}}" style="width: 36px; height: 36px;" class="feedtitleicon"> {{ $vacancy->company->name }} had posted a vacancy on {{$vacancy->jobPost}}  </h3>
-							<small>{{$vacancy->updated_at}}</small>
+							<small>{{$vacancy->updated_at->timezone('+05:30')}}</small>
 						</div>
 					</div>
 					<div class="col-lg-1"></div>
@@ -33,7 +31,7 @@
 									Field : {{$vacancy->jobField}}
 								</div><br>
 								<div class="textdetails">
-									Post : {{$vacancy->jobPost}}
+									Title/Post : {{$vacancy->jobPost}}
 								</div><br>
 								<div class="textdetails">
 									Salary : {{$vacancy->salary}}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Vacancy;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,16 @@ class CompanyController extends Controller
             'salary'=>'required',
             'location'=>'required',
             'flyerimg'=>['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048']
-        ]);
+        ],[
+            'jobfield.required' => 'Enter a valid Job Field for this vacancy.',
+            'jobpost.required' => 'Enter a valid Job Title for this vacancy.',
+            'salary.required' => 'Enter an approximate Salary value/range for this vacancy.',
+            'location.required' => 'Enter the Working Location for this vacancy.',
+            'flyerimg.required' => 'Upload a Flyer Image to show in vacancy post.',
+            'flyerimg.max' => 'The Flyer Image Size may not be greater than 2MB.',
+            'flyerimg.mimes' => 'The Flyer Image must be a .jpg .png or .jpeg file.'
+        ]); 
+
 
         $vacancy = new Vacancy;
         $vacancy->jobField = $request->jobfield;
@@ -69,7 +79,19 @@ class CompanyController extends Controller
             'salary'=>'required',
             'location'=>'required',
             'flyerimg'=>['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048']
+        ],[
+            'jobfield.required' => 'Enter a valid Job Field for this vacancy.',
+            'jobpost.required' => 'Enter a valid Job Title for this vacancy.',
+            'salary.required' => 'Enter an approximate Salary value/range for this vacancy.',
+            'location.required' => 'Enter the Working Location for this vacancy.',
+            'flyerimg.required' => 'Upload a Flyer Image to show in vacancy post.',
+            'flyerimg.max' => 'The Flyer Image Size may not be greater than 2MB.',
+            'flyerimg.mimes' => 'The Flyer Image must be a .jpg .png or .jpeg file.'
         ]);
+        
+        $filePath = 'storage/' . $vacancy->flyer;
+        File::delete($filePath);
+
         $vacancy->jobField = $request->jobfield;
         $vacancy->jobPost = $request->jobpost;
         $vacancy->salary = $request->salary;
@@ -135,6 +157,14 @@ class CompanyController extends Controller
         File::delete($filePath);
         $user->delete();
         return redirect()->route('login')->with('success', 'Your account has been deleted.');
+    }
+
+    public function AllMessages(){
+        $userid = Auth::guard('company')->user()->id;
+        
+        $newmsgdb = Message::where('recipient_type', 'company')->where('recipient_id', $userid)->where('is_seen', false)->get();
+        return view('Company.commsg' , compact('newmsgdb'));
+        //dd($newmsgdb);
     }
 
 

@@ -9,49 +9,54 @@
             <div class="row">
 				<center>
                 <div class="newchatHeads">
-					<h2 style=" font-family: verdana; font-size: 150%;">
+				
+					<div class="heading">
 					<img src="{{ asset ('images/icon/Unread.png') }}" alt="Unread icon" style="width: 32px; height: 40px;">
-					<u> New Messages</u></h2>
+					<u> New Messages</u>
+					</div>
+				
 					<table style="border:3px solid #2f2fa2; width: 60%;">
 					
-                    {{-- {% for i in newmsgdb %} --}}
-					<tr style="border:1px solid #242582;">
-					<td>
-						<a href="">
-							<div class="heads">
-								<h5>
-								<img src="{{ asset ('images/icon/Unread.png') }}" alt="Unread icon" style="width: 26px; height:34px;">
-								 i.sender </h5>
-							</div>
-						</a>
-					</td>
-					<td>
-						<a href=" url 'msgseen' comdb.comid i.msgid "> 
-							<div class="marbtndiv">
+						@foreach($newmsgdb as $newmsg)
+							<tr style="border:1px solid #242582;">
+							<td>
+								<a href="">
+									<div class="heads">
+										<h5>
+										<img src="{{ asset ('images/icon/Unread.png') }}" alt="Unread icon" style="width: 26px; height:34px;">
+										i.sender </h5>
+									</div>
+								</a>
+							</td>
+							<td>
+								<a href=" url 'msgseen' comdb.comid i.msgid "> 
+									<div class="marbtndiv">
+										<br>
+											<button type="button" class="markasread">Mark as Read</button>
+									</div>
+								</a>
 								<br>
-									<button type="button" class="markasread">Mark as Read</button>
-							</div>
-						</a>
-						<br>
-					</td>
-				
-					</tr>
-					<br>
-					{{-- {% endfor %} --}}
+							</td>
+						
+							</tr>
+							<br>
+						@endforeach
 			
-				</table>
+					</table>
 				</div>
 				</center>
             </div>
-			<br><br><br>
+			<br><br>
+			<hr style="color:#242582; height:3px;">
+			<br>
 			
     
 			<div class="row">
                 <div class="oldchatHeads">
-					<h2 style=" font-family: verdana; font-size: 150%;">
+					<div class="heading">
 					<img src="{{asset( 'images/icon/readmsg.png')}} " alt="Unread messages" style="width: 32px; height: 38px;">
 					<u> Old Messages</u>
-					</h2>
+					</div>
 					<br>
 					
                     {{-- {% for k in oldmsgdb %} --}}
