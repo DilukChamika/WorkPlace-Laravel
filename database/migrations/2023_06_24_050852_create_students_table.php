@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('profilePic');
             $table->string('username');
             $table->string('password');
+            $table->text('favorite_vacancies')->nullable();
             $table->timestamps();
         });
     }

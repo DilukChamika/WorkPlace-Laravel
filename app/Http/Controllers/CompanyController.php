@@ -133,6 +133,17 @@ class CompanyController extends Controller
             'Address' => 'required',
             'profilePicture' =>  ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
             'comlinkedin' => 'required'
+        ],[
+            'companyname.required' => 'Enter the company name.',
+            'companyDescription.required' => 'Enter discription about your company.',
+            'regnumber.required' => 'Enter your company register number.',
+            'email.required' => 'Enter your company email address.',
+            'phone.required' => 'Enter your company phone number.',
+            'Address.required' => 'Enter physical address of your company.',
+            'comlinkedin.required' => 'Enter LinkedIn or other company profile URL.',
+            'profilePicture.required' => 'Enter Profile picture for your company.',
+            'profilePicture.max' => 'The Profile picture image size may not be greater than 2MB.',
+            'profilePicture.mimes' => 'The Profile picture image must be a .jpg .png or .jpeg file.'
         ]);
 
         $filePath = 'storage/' . $company->profilePic;

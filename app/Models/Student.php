@@ -29,6 +29,7 @@ class Student extends Authenticatable
         'profilePic',
         'username',
         'password',
+        'favorite_vacancies',
     ];
 
     /**

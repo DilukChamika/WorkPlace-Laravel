@@ -42,5 +42,11 @@ Route::prefix('Student')->name('Student.')->group(function(){
     Route::middleware(['auth:student'])->group(function(){
         Route::view('/home', 'Student.home')->name('home');
         Route::get('/logout', [StudentController::class, 'logout'])->name('logout');
+        Route::get('/feed', [StudentController::class, 'StuFeed'])->name('StuFeed');
+        Route::get('/aboutme', [StudentController::class, 'AboutMe'])->name('AboutMe');
+        Route::post('/editStuData', [StudentController::class, 'EditStudentData'])->name('editStuData');
+        Route::get('/deletemyaccount',[StudentController::class, 'DeleteMyAccount'])->name('deletemyaccount');
+        Route::get('/addfavorite', [StudentController::class, 'AddToFav'])->name('addfavorite');
+       
     });
 });

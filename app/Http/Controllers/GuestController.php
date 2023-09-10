@@ -111,7 +111,7 @@ class GuestController extends Controller
             $creds = $request-> only('username', 'password');
 
             if(Auth::guard('student')->attempt($creds)){
-                return redirect()->route('Student.home');
+                return redirect()->route('Student.StuFeed');
             }else{
                 return redirect()->route('Guest.login')->with('fail','Invalid Credentials');
             }

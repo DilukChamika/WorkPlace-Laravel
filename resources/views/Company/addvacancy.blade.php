@@ -17,28 +17,28 @@
                 <form action="{{route('Company.storevacancy')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                       <label for="jobfield" class="addpostlabel">Job Vacancy Field:</label><br>
-                      <input type="text" id="jobfield" name="jobfield" class="editposttextfield" placeholder="Eg: Software Engineering" value="{{ old('jobfield') }}">
+                      <input type="text" id="jobfield" name="jobfield" class="details"  placeholder="Eg: Software Engineering" value="{{ old('jobfield') }}">
                       @error('jobfield')
                           <div class="input-error">{{ $message }}</div>
                       @enderror
                       <br><br>
         
                       <label for="jobpost" class="addpostlabel">Job Vacancy Title:</label><br>
-                      <input type="text" id="jobpost" name="jobpost" class="editposttextfield" placeholder="Eg: Full-Stack developer (Intern)">
+                      <input type="text" id="jobpost" name="jobpost" class="details" placeholder="Eg: Full-Stack developer (Intern)">
                       @error('jobpost')
                           <div class="input-error">{{ $message }}</div>
                       @enderror
                       <br><br>
         
                       <label for="salary" class="addpostlabel">Salary Range:</label><br>
-                      <input type="text" id="salary" name="salary" class="editposttextfield" placeholder="Eg: LKR 30,000- 40,000">
+                      <input type="text" id="salary" name="salary" class="details" placeholder="Eg: LKR 30,000- 40,000">
                       @error('salary')
                           <div class="input-error">{{ $message }}</div>
                       @enderror
                       <br><br>
         
                       <label for="location" class="addpostlabel">Location:</label><br>
-                      <input type="text" id="location" name="location" class="editposttextfield" placeholder="Eg: Colombo, Sri Lanka">
+                      <input type="text" id="location" name="location" class="details" placeholder="Eg: Colombo, Sri Lanka">
                       @error('location')
                           <div class="input-error">{{ $message }}</div>
                       @enderror
@@ -52,7 +52,7 @@
                       <br><br>
 
                     <div style="text-align: center;">
-                      <input type="submit" value="Submit" id="subBtn" ><br><br>
+                      <input type="submit" value="Submit" class="subBtn" ><br><br>
                     </div>
                       
                   </form>

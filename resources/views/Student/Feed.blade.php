@@ -1,4 +1,4 @@
-@extends('Company.layout')
+@extends('Student.layout')
 
 @section('title', 'My Posts')
 
@@ -41,17 +41,15 @@
 								</div><br><br>
 							</div>
 							<br>
-							<hr>
-							<center>
-							<div class="row">
-							    <div class="col-2"></div>
-								<div class="col-3"><a href="{{route('Company.editvacancy',['vacancy_id'=> $vacancy->id])}}"> <button class="applybtn">Edit</button></a></div>
-                                <div class="col-2"></div>
-								<div class="col-3"><a href="{{route('Company.deletevacancy',['vacancy_id'=> $vacancy->id])}}"><button class="favoritebtn" onclick="return confirm('{{ __('Are you sure you want to delete this vacancy post?') }}')">Delete</button></a></div>
-								<div class="col-2"></div>
 							
-							</div>
-						</center>
+						</div>
+						<br>
+						<div class="row">
+							
+							<div class="col-4"><a href="/"> <button class="applybtn">Apply</button></a></div>
+							<div class="col-4"><a href="{{route('Student.addfavorite', ['vacancy_id' => $vacancy->id])}}"><button class="favoritebtn">Add to favorite</button></a></div>
+							<div class="col-4"><a href="\"><button class="seemore">See More...</button></a></div>
+						
 						</div>
 						
 					</div>
@@ -60,6 +58,7 @@
 				</div>
 	
 			</div>
+			<br>
 			<hr style="color:#242582; height:3px;">
 			@endforeach
 

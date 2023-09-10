@@ -16,28 +16,28 @@
                 <form action="{{route('Company.updatevacancy', ['vacancy_id'=> $vacancy->id])}}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <label for="jobfield" class="addpostlabel">Job Vacancy Field:</label><br>
-                  <input type="text" id="jobfield" name="jobfield" value="{{$vacancy->jobField}}" class="editposttextfield">
+                  <input type="text" id="jobfield" name="jobfield" value="{{$vacancy->jobField}}" class="details">
                     @error('jobfield')
                           <div class="input-error">{{ $message }}</div>
                     @enderror
                     <br><br>
     
                   <label for="jobpost" class="addpostlabel">Job Vacancy Title:</label><br>
-                  <input type="text" id="jobpost" name="jobpost" value="{{$vacancy->jobPost}}" class="editposttextfield">
+                  <input type="text" id="jobpost" name="jobpost" value="{{$vacancy->jobPost}}" class="details">
                     @error('jobpost')
                           <div class="input-error">{{ $message }}</div>
                     @enderror
                   <br><br>
     
                   <label for="salary" class="addpostlabel">Salary:</label><br>
-                  <input type="text" id="salary" name="salary" value="{{$vacancy->salary}}" class="editposttextfield">
+                  <input type="text" id="salary" name="salary" value="{{$vacancy->salary}}" class="details">
                     @error('salary')
                           <div class="input-error">{{ $message }}</div>
                     @enderror
                     <br><br>
     
                   <label for="location" class="addpostlabel">Location:</label><br>
-                  <input type="text" id="location" name="location" value="{{$vacancy->location}}" class="editposttextfield">
+                  <input type="text" id="location" name="location" value="{{$vacancy->location}}" class="details">
                     @error('location')
                           <div class="input-error">{{ $message }}</div>
                     @enderror
@@ -60,7 +60,7 @@
                     <br><br><br>
     
                     <div style="text-align: center;">
-                        <input type="submit" value="Submit" id="subBtn" ><br><br>
+                        <input type="submit" value="Submit" class="subBtn" ><br><br>
                     </div>
                 
                 </form>
