@@ -41,7 +41,7 @@
         <div class="row">
             <br><br><hr style="color:#242582; height:3px;">
         
-            <h5>Copyright @ WorkPlace </h5>
+            <p>Copyright @ WorkPlace </p>
         </div>
 </div>
 <br>

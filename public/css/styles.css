@@ -72,10 +72,30 @@ img.feedtitleicon{
 	border-color: #242582;
 	padding-top: 4px;
 	padding-bottom: 4px;
+	transition: background-color 0.3s ease;
 }
+.applybtn:hover{
+	background-color: #242582;
+	border-color: white;
+}
+
 .favoritebtn{
 	color: white;
 	background-color: blue;
+	width: 100%;
+	border-radius: 6px;
+	border-color: #242582;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	transition: background-color 0.3s ease;
+}
+.favoritebtn:hover{
+	background-color: #242582;
+	border-color: white;
+}
+.favoritebtn-success{
+	color: black;
+	background-color: white;
 	width: 100%;
 	border-radius: 6px;
 	border-color: #242582;
@@ -90,6 +110,11 @@ img.feedtitleicon{
 	border-color: #242582;
 	padding-top: 4px;
 	padding-bottom: 4px;
+	transition: background-color 0.3s ease;
+}
+.seemore:hover{
+	background-color: #242582;
+	border-color: white;
 }
 
 .commonbtn{
@@ -244,19 +269,19 @@ img.feedtitleicon{
 	color: #ffffff;
 	width: 70%;
 	height: 35px;
-	border-color: #242582;
+	border: 2px solid #242582;
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	-ms-border-radius: 6px;
 	-o-border-radius: 6px;
 	}
-  #createNewAccBtn {
+  .createNewAccBtn {
 	background-color: #ffffff;
 	color: blue;
 	width: 70%;
 	height: 35px;
-	border-color: #242582;
+	border: 2px solid #242582;
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -296,8 +321,7 @@ img.feedtitleicon{
 	color: blue;
 	width: 100px;
 	height: 30px;
-	border-color: #242582;
-	margin-left: 350px;
+	border: 2px solid #242582;
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -317,13 +341,13 @@ img.feedtitleicon{
   }
   #selectbox {
 	background-color:#ffffff;
-	width: 580px;
+	width: 100%;
 	height: 500px;
 	margin-top: 60px;
 	margin-bottom: 20px;
 	padding-bottom: 40px;
 	text-align: justify;
-	padding-left: 90px;
+	padding-left: 60px;
 	font-weight: bold;
 	font-size: large;
 	align-items: center;
@@ -413,13 +437,13 @@ img.feedtitleicon{
   }
   #createaccbox{
 	background-color: #ffffff;
-	width: 600px;
-	height: 1200px;
+	width: 100%;
 	margin-top: 60px;
 	margin-bottom: 20px;
 	padding-bottom: 40px;
 	text-align: justify;
-	padding-left: 50px;
+	padding-left: 30px;
+	padding-right: 30px;
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -445,6 +469,7 @@ img.feedtitleicon{
 	-ms-border-radius: 6px;
 	-o-border-radius: 6px;
 	padding-left: 12px;
+	padding-right: 12px;
 	padding-top: 12px;
 	padding-bottom: 12px;
   }
@@ -455,9 +480,8 @@ img.feedtitleicon{
 	color: #ffffff;
 	width: 100px;
 	height: 30px;
-	border-color: #242582;
+	border: 2px solid #242582;
 	border-radius: 6px;
-	margin-left: 200px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	-ms-border-radius: 6px;
@@ -468,8 +492,7 @@ img.feedtitleicon{
 	color: blue;
 	width: 140px;
 	height: 30px;
-	margin-left: 180px;
-	border-color: #242582;
+	border: 2px solid #242582;
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;

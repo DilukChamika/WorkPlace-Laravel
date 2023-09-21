@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Company;
 use App\Models\Vacancy;
 use App\Models\Message;
+use App\Models\StudentFavorite;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -82,19 +83,41 @@ class StudentController extends Controller
     }
 
     function AddToFav(Request $request){
-        $student = Auth::guard('student')->user();
+        $student_id = Auth::guard('student')->user()->id;
         $vacancy_id = $request->get('vacancy_id');
 
-        $favoriteVacancies = json_decode($student->favorite_vacancies) ?? [];
-    
-        if (!in_array($vacancy_id, $favoriteVacancies)) {
-            $favoriteVacancies[] = $vacancy_id;
-        }
-    
-        $student->favorite_vacancies = json_encode($favoriteVacancies);
+        $exists = StudentFavorite::where('student_id', $student_id)
+                ->where('post_id', $vacancy_id)
+                ->exists();
 
-        $student->save();
-        return redirect('Student/feed');
+        if($exists){
+            return redirect('Student/feed')->with('message', 'This vacancy already added to favorites!');
+        }else{
+            $favorite = new StudentFavorite();
+            $favorite->student_id = $student_id;
+            $favorite->post_id = $vacancy_id;
+            $favorite->save();
+            return redirect('Student/feed');
+        } 
+    }
+
+    function Favorite(){
+        $student_id = Auth::guard('student')->user()->id;
+
+        $favoriteVacancies = Vacancy::join('student_favorites', 'vacancies.id', '=', 'student_favorites.post_id')
+            ->where('student_favorites.student_id', $student_id)
+            ->select('vacancies.*') 
+            ->get();
+        
+        return view('Student.favorite', compact('favoriteVacancies'));
+    }
+
+    function Removefavorite(Request $request){
+        $student_id = Auth::guard('student')->user()->id;
+        StudentFavorite::where('student_id', $student_id)
+        ->where('post_id', $request->vacancy_id)
+        ->delete();
+        return redirect('Student/favorite');
     }
 
 

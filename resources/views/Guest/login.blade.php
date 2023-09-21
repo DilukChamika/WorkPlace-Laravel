@@ -63,7 +63,7 @@
                 <div class="col-md-4">
                   <center>
                   <input type="submit" value="Login" id="loginsubBtn" /><br /><br />
-                  <a href="/AccType"><input type="button" value="Create New Account" id="createNewAccBtn" /></a>
+                  <a href="/AccType"><input type="button" value="Create New Account" class="createNewAccBtn" /></a>
                 </center>
                 </div>
                 <div class="col-md-4"></div>

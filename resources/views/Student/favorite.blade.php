@@ -1,10 +1,10 @@
 @extends('Student.layout')
 
-@section('title', 'Student Feed')
+@section('title', 'Student Favorites')
 
 @section('content')
 <hr style="color:#242582; height:3px;">
-	@foreach ($vacancies as $vacancy)
+	@foreach ($favoriteVacancies as $vacancy)
 
 			<div class="row" id="myposts">
 				<div class="row">
@@ -48,14 +48,8 @@
 							
 							<div class="col-4"><a href="/"> <button class="applybtn">Apply</button></a></div>
 
-
-							@if(\App\Models\StudentFavorite::where('student_id', Auth::guard('student')->user()->id)->where('post_id', $vacancy->id)->exists())
-								<div class="col-4"><button class="favoritebtn-success">Already added to favorites</button></div>
-							@else
-								<div class="col-4"><a href="{{route('Student.addfavorite', ['vacancy_id' => $vacancy->id])}}"><button class="favoritebtn">Add to favorite</button></a></div>
-							@endif
-
-							
+							<div class="col-4"><a href="{{route('Student.removefavorite', ['vacancy_id' => $vacancy->id])}}"><button class="favoritebtn">Remove from favorite</button></a></div>
+			
 							<div class="col-4"><a href="\"><button class="seemore">See More...</button></a></div>
 						
 						</div>

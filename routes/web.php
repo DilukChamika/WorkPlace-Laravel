@@ -7,12 +7,9 @@ use App\Http\Controllers\CompanyController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
+Route::get('/', [GuestController::class, 'login'])->name('login');
 Route::get('/login', [GuestController::class, 'login'])->name('login');
 Route::get('/AccType', [GuestController::class, 'selectAccType'])->name('selectAccType');
 Route::get('/CreateCompanyAcc', [GuestController::class, 'createComAcc'])->name('createComAcc');
@@ -47,6 +44,8 @@ Route::prefix('Student')->name('Student.')->group(function(){
         Route::post('/editStuData', [StudentController::class, 'EditStudentData'])->name('editStuData');
         Route::get('/deletemyaccount',[StudentController::class, 'DeleteMyAccount'])->name('deletemyaccount');
         Route::get('/addfavorite', [StudentController::class, 'AddToFav'])->name('addfavorite');
+        Route::get('/favorite', [StudentController::class, 'Favorite'])->name('favorite');
+        Route::get('/removefavorite', [StudentController::class, 'Removefavorite'])->name('removefavorite');
        
     });
 });
