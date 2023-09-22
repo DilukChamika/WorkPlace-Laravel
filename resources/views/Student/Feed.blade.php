@@ -56,7 +56,7 @@
 							@endif
 
 							
-							<div class="col-4"><a href="\"><button class="seemore">See More...</button></a></div>
+							<div class="col-4"><a href="{{route('Student.seemore', ['vacancy_id' => $vacancy->id])}}"><button class="seemore">See More...</button></a></div>
 						
 						</div>
 						
@@ -69,5 +69,12 @@
 			<br>
 			<hr style="color:#242582; height:3px;">
 			@endforeach
+
+
+
+
+
+
+			
 
     @endsection

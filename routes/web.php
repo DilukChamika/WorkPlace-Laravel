@@ -46,6 +46,7 @@ Route::prefix('Student')->name('Student.')->group(function(){
         Route::get('/addfavorite', [StudentController::class, 'AddToFav'])->name('addfavorite');
         Route::get('/favorite', [StudentController::class, 'Favorite'])->name('favorite');
         Route::get('/removefavorite', [StudentController::class, 'Removefavorite'])->name('removefavorite');
+        Route::get('/seemore', [StudentController::class, 'SeeMore'])->name('seemore');
        
     });
 });

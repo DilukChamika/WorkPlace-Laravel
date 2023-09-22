@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\Student;
 use App\Models\Vacancy;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
@@ -173,8 +174,24 @@ class CompanyController extends Controller
     public function AllMessages(){
         $userid = Auth::guard('company')->user()->id;
         
-        $newmsgdb = Message::where('recipient_type', 'company')->where('recipient_id', $userid)->where('is_seen', false)->get();
-        return view('Company.commsg' , compact('newmsgdb'));
+        $messages = Message::where('recipient_type', 'company')
+            ->where('recipient_id', $userid)
+            ->where('is_seen', false)
+            ->get();
+
+            foreach ($messages as $message) {
+                $senderType = $message->sender_type;
+    
+                if ($senderType === 'student') {
+                    $sender = Student::find($message->sender_id);
+                    $message->heading = $sender->firstname. ' ' . $sender->lastname;
+                } elseif ($senderType === 'company') {
+                    $sender = Company::find($message->sender_id);
+                    $message->heading = $sender->name;
+                }
+            }
+
+        return view('Company.commsg', compact('messages'));
         //dd($newmsgdb);
     }
 

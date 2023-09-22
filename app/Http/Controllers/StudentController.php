@@ -120,5 +120,13 @@ class StudentController extends Controller
         return redirect('Student/favorite');
     }
 
+    function SeeMore(Request $request){
+        $vacancy = Vacancy::findOrFail($request->vacancy_id);
+
+        $company = $vacancy->company; 
+
+        return view('Student.AboutVacancy', compact('vacancy', 'company'));
+    }
+
 
 }

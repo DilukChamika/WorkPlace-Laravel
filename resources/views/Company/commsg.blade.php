@@ -17,19 +17,19 @@
 				
 					<table style="border:3px solid #2f2fa2; width: 60%;">
 					
-						@foreach($newmsgdb as $newmsg)
+						@foreach($messages as $newmsg)
 							<tr style="border:1px solid #242582;">
 							<td>
 								<a href="">
 									<div class="heads">
 										<h5>
 										<img src="{{ asset ('images/icon/Unread.png') }}" alt="Unread icon" style="width: 26px; height:34px;">
-										i.sender </h5>
+										{{$newmsg->heading}} </h5>
 									</div>
 								</a>
 							</td>
 							<td>
-								<a href=" url 'msgseen' comdb.comid i.msgid "> 
+								<a href="/"> 
 									<div class="marbtndiv">
 										<br>
 											<button type="button" class="markasread">Mark as Read</button>
