@@ -1,6 +1,6 @@
-@extends('Company.layout')
+@extends('Student.layout')
 
-@section('title', 'Messages-Company')
+@section('title', 'Messages-Student')
 
 @section('content')
 
@@ -20,7 +20,7 @@
 						@foreach($messages as $newmsg)
 							<tr style="border:1px solid #242582;">
 							<td>
-								<a href="{{route('Company.msgbody', ['sender_id' => $newmsg->sender_id , 'sender_type'=> $newmsg->sender_type])}}">
+								<a href="{{route('Student.msgbody', ['sender_id' => $newmsg->sender_id , 'sender_type'=> $newmsg->sender_type])}}">
 									<div class="heads">
 										<h5>
 										<img src="{{ asset ('images/icon/Unread.png') }}" alt="Unread icon" style="width: 26px; height:34px;">
@@ -29,7 +29,7 @@
 								</a>
 							</td>
 							<td>
-								<a href="{{route('Company.seenmsg', ['msg_id' => $newmsg->id])}}"> 
+								<a href="{{route('Student.seenmsg', ['msg_id' => $newmsg->id])}}"> 
 									<div class="marbtndiv">
 										<br>
 											<button type="button" class="markasread">Mark as Read</button>
@@ -60,7 +60,7 @@
 					<br>
 					
                     @foreach($oldmessages as $oldmsg)
-                    <a href="{{route('Company.msgbody', ['sender_id' => $oldmsg->sender_id, 'sender_type' => $oldmsg->sender_type])}}">
+                    <a href="{{route('Student.msgbody', ['sender_id' => $oldmsg->sender_id, 'sender_type' => $oldmsg->sender_type])}}">
 						<div class="heads">
 							<h5>
 								<img src="{{asset( 'images/icon/readmsg.png') }}" alt="Unread messages" style="width: 28px; height: 32px;">

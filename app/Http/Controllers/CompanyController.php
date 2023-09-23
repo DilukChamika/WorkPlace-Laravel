@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class CompanyController extends Controller
 {
@@ -191,8 +192,84 @@ class CompanyController extends Controller
                 }
             }
 
-        return view('Company.commsg', compact('messages'));
+
+        $oldmessages = Message::where('recipient_type', 'company')
+        ->where('recipient_id', $userid)
+        ->where('is_seen', true)
+        ->get();
+
+        foreach ($oldmessages as $oldmessage) {
+            $senderType = $oldmessage->sender_type;
+
+            if ($senderType === 'student') {
+                $sender = Student::find($oldmessage->sender_id);
+                $oldmessage->heading = $sender->firstname. ' ' . $sender->lastname;
+            } elseif ($senderType === 'company') {
+                $sender = Company::find($oldmessage->sender_id);
+                $oldmessage->heading = $sender->name;
+            }
+        }
+
+        return view('Company.commsg', compact('messages', 'oldmessages'));
         //dd($newmsgdb);
+    }
+
+
+    public function SeenMsg(Request $request){
+        $message = Message::findOrFail($request->msg_id);
+        $message->update(['is_seen' => 1]);
+        return redirect()->back();
+    }
+
+    public function MsgBody(Request $request){
+        $user = Auth::guard('company')->user();
+        $sender_id = $request->sender_id;
+        $sender_type = $request->sender_type;
+
+        $messages = Message::where(function ($query) use ($user, $sender_id) {
+            $query->where('sender_id', $user->id)
+                  ->where('recipient_id', $sender_id);
+        })->orWhere(function ($query) use ($user, $sender_id) {
+            $query->where('sender_id', $sender_id)
+                  ->where('recipient_id', $user->id);
+        })->get();
+
+        foreach ($messages as $msg) {
+            $senderType = $msg->sender_type;
+
+            if ($senderType === 'student') {
+                $sender = Student::find($msg->sender_id);
+                $msg->heading = $sender->firstname. ' ' . $sender->lastname;
+            } elseif ($senderType === 'company') {
+                $sender = Company::find($msg->sender_id);
+                $msg->heading = $sender->name;
+            }
+        }
+
+        return view('Company.msgbody', compact('messages', 'sender_id', 'sender_type'));
+
+    }
+
+    public function SendMsg(Request $request){
+        $user = Auth::guard('company')->user();
+
+        $request->validate([
+            'newmsg' => 'required|string',
+        ]);
+
+        $message = new Message([
+            'message' => $request->input('newmsg'),
+            'sender_id' => $user->id,
+            'recipient_id' => $request->sender_id, 
+            'sender_type' => 'company',
+            'recipient_type' => $request->sender_type,
+        ]);
+
+        $now = Carbon::now('Asia/Kolkata'); 
+        $message->created_at = $now;
+        $message->updated_at = $now;
+        $message->save();
+        return redirect()->back();
     }
 
 

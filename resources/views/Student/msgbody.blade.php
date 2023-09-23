@@ -1,4 +1,4 @@
-@extends('Company.layout')
+@extends('Student.layout')
 
 @section('title', 'Message')
 
@@ -10,7 +10,7 @@
 			
 <div class="row">
 
-    <a href="{{route('Company.message')}}">  
+    <a href="{{route('Student.message')}}">  
         <div class="chatbackbtn">
             <button type="button" class="btn btn-primary">Back to Messages</button>
         </div>
@@ -34,7 +34,7 @@
     @endforeach
 </div>
 <div class="typebox">
-    <form action="{{route('Company.sendmsg')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('Student.sendmsg')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <br>
         <textarea rows="5" cols="60" name="newmsg" id="newmsg"></textarea>

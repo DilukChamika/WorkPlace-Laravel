@@ -5,7 +5,7 @@
         <a class="nav-link  {{ Request::path() == 'Student/feed' ? 'active' : '' }}" href="{{route('Student.StuFeed')}}"> <img src="{{ asset ('images/icon/feedwhite.png') }}" alt="Feed" style="width: 34px; height: 34px;" class="btnicon"> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Request::path() == 'stumsg'  || Request::path() == 'stumsgbody' ? 'active' : '' }}" href="/stumsg"><img src="{{ asset ('images/icon/msgwhite.png') }}" alt="Messages" style="width: 34px; height: 34px;" class="btnicon"></a>
+        <a class="nav-link {{ Request::path() == 'Student/message'  || Request::path() == 'Student/msgbody' ? 'active' : '' }}" href="{{route('Student.message')}}"><img src="{{ asset ('images/icon/msgwhite.png') }}" alt="Messages" style="width: 34px; height: 34px;" class="btnicon"></a>
       </li>
       <li class="nav-item">
         <a class="nav-link  {{ Request::path() == 'stunotification' ? 'active' : '' }}" href="/stunotification"><img src="{{ asset ('images/icon/notificationwhite.png') }}" alt="Notification" style="width: 34px; height: 34px;" class="btnicon"></a>

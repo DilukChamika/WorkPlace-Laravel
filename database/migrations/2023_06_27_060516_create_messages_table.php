@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('recipient_id');
             $table->string('sender_type');
-            $table->string('sender_name');
             $table->string('recipient_type');
             $table->string('message');
             $table->boolean('is_seen')->default(false);

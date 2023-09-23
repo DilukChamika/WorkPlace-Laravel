@@ -11,5 +11,15 @@ class Message extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'sender_id',
+        'recipient_id',
+        'sender_type',
+        'recipient_type',
+        'message',
+        'is_seen',
+        
+    ];
+
     
 }
