@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Student;
 use App\Models\Vacancy;
 use App\Models\Message;
+use App\Models\CompanyNotifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -101,6 +102,7 @@ class CompanyController extends Controller
         $vacancy->flyer =  $request->file('flyerimg')->store('FlyerImages','public');
 
         $vacancy->save();
+
         return redirect('Company/home')->with('message', 'Vacancy Updated Successfully!');
 
     }
@@ -269,6 +271,27 @@ class CompanyController extends Controller
         $message->created_at = $now;
         $message->updated_at = $now;
         $message->save();
+        return redirect()->back();
+    }
+
+    public function Notification(){
+        $user = Auth::guard('company')->user();
+        $newNotifications = CompanyNotifications::where('company_id', $user->id)
+        ->where('is_read', false)
+        ->get();
+
+        $oldNotifications = CompanyNotifications::where('company_id', $user->id)
+        ->where('is_read', true)
+        ->get();
+
+        return view('Company.comnotification', compact('newNotifications', 'oldNotifications'));
+
+    }
+    
+
+    public function ReadNotification(Request $request){
+        $notification = CompanyNotifications::findOrFail($request->notification_id);
+        $notification->update(['is_read' => 1]);
         return redirect()->back();
     }
 

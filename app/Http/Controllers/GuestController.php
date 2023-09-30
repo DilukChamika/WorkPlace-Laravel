@@ -97,6 +97,8 @@ class GuestController extends Controller
             'acctype'=> 'required',
             'username' => 'required',
             'password' => 'required | min:5 | max:20'
+        ],[
+            'acctype.required' => 'Account type must be selected.'
         ]);
 
         $acctype = $request->acctype;
@@ -113,7 +115,7 @@ class GuestController extends Controller
             if(Auth::guard('student')->attempt($creds)){
                 return redirect()->route('Student.StuFeed');
             }else{
-                return redirect()->route('Guest.login')->with('fail','Invalid Credentials');
+                return redirect('login')->with('message','Invalid Credentials');
             }
 
 
@@ -131,7 +133,7 @@ class GuestController extends Controller
             if(Auth::guard('company')->attempt($creds)){
                 return redirect()->route('Company.home');
             }else{
-                return redirect()->route('Guest.login')->with('fail','Invalid Credentials');
+                return redirect('login')->with('message','Invalid Credentials');
             }
 
 

@@ -29,10 +29,13 @@
                 <div class="col-md-6 col-8">
                   <br><br>
                   <label for="acctype"><b>Select Account Type:</b></label><br>
-                  <input type="radio" id="student" name="acctype" value="student" required>
+                  <input type="radio" id="student" name="acctype" value="student">
                   <label for="student">Student</label><br>
                   <input type="radio" id="company" name="acctype" value="company">
                   <label for="company">Company</label><br>
+                  @error('acctype')
+                          <div class="input-error">{{ $message }}</div>
+                  @enderror
                   <br><br>
                 </div>
                 <div class="col-md-3 col-2"></div>
@@ -42,7 +45,11 @@
                 <div class="col-md-3 col-1"></div>
                 <div class="col-md-6 col-10">
                   <label for="username"><b>Username:</b> </label><br />
-                    <input type="text" id="loginusername" name="username" required/><br /><br />
+                    <input type="text" id="loginusername" name="username"/>
+                    @error('username')
+                          <div class="input-error">{{ $message }}</div>
+                    @enderror
+                    <br /><br />
                 </div>
                 <div class="col-md-3 col-1"></div>
               </div>
@@ -51,8 +58,11 @@
                 <div class="col-md-3 col-1"></div>
                 <div class="col-md-6 col-10">
                   <label for="password"><b>Password:</b></label><br />
-                  <input type="password" id="loginpword" name="password" required /><br />
+                  <input type="password" id="loginpword" name="password" /><br />
                   <input type="checkbox" onclick="showPass()" />Show Password
+                  @error('password')
+                          <div class="input-error">{{ $message }}</div>
+                  @enderror
                   <br /><br /><br />
                 </div>
                 <div class="col-md-3 col-1"></div>
@@ -77,6 +87,7 @@
       <div class="col-md-1"></div>
     </div>
   </div>
+  <br><br>
 
 
       

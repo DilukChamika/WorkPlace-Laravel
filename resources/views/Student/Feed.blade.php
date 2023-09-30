@@ -45,8 +45,12 @@
 						</div>
 						<br>
 						<div class="row">
-							
-							<div class="col-4"><a href="/"> <button class="applybtn">Apply</button></a></div>
+
+							@if(\App\Models\StudentApply::where('student_id', Auth::guard('student')->user()->id)->where('post_id', $vacancy->id)->exists())
+								<div class="col-4"><button class="favoritebtn-success">Already Applied</button></div>
+							@else
+								<div class="col-4"><a href="{{route('Student.apply', ['vacancy_id' => $vacancy->id])}}"><button class="applybtn">Apply</button></a></div>
+							@endif
 
 
 							@if(\App\Models\StudentFavorite::where('student_id', Auth::guard('student')->user()->id)->where('post_id', $vacancy->id)->exists())

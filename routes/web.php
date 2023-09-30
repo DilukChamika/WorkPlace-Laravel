@@ -35,6 +35,8 @@ Route::prefix('Company')->name('Company.')->group(function(){
         Route::get('/seenmsg', [CompanyController::class, 'SeenMsg'])->name('seenmsg');
         Route::get('/msgbody', [CompanyController::class, 'MsgBody'])->name('msgbody');
         Route::post('/sendmsg', [CompanyController::class, 'SendMsg'])->name('sendmsg');
+        Route::get('/comnotification', [CompanyController::class, 'Notification'])->name('comnotification');
+        Route::get('/readNotification', [CompanyController::class, 'ReadNotification'])->name('readNotification');
     });
 });
 
@@ -54,6 +56,9 @@ Route::prefix('Student')->name('Student.')->group(function(){
         Route::get('/seenmsg', [StudentController::class, 'SeenMsg'])->name('seenmsg');
         Route::get('/msgbody', [StudentController::class, 'MsgBody'])->name('msgbody');
         Route::post('/sendmsg', [StudentController::class, 'SendMsg'])->name('sendmsg');
+        Route::get('/apply', [StudentController::class, 'Apply'])->name('apply');
+        Route::get('/stuNotification', [StudentController::class, 'Notification'])->name('stuNotification');
+        Route::get('/readNotification', [StudentController::class, 'ReadNotification'])->name('readNotification');
        
     });
 });

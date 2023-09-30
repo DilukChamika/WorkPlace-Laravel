@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Company;
 use App\Models\Vacancy;
 use App\Models\Message;
+use App\Models\CompanyNotifications;
+use App\Models\StudentNotifications;
 use App\Models\StudentFavorite;
+use App\Models\StudentApply;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -227,6 +230,72 @@ class StudentController extends Controller
         $message->created_at = $now;
         $message->updated_at = $now;
         $message->save();
+        return redirect()->back();
+    }
+
+    public function Apply(Request $request){
+        $student = Auth::guard('student')->user();
+        $student_id = $student->id;
+        $vacancy_id = $request->get('vacancy_id');
+
+        $vacancy = Vacancy::where('id', $vacancy_id)->first();
+
+        $company = Company::where('id', $vacancy->company_id)->first();
+        $companyName = $company->name;
+
+        //dd($vacancy->company_id);
+
+        $exists = StudentApply::where('student_id', $student_id)
+                ->where('post_id', $vacancy_id)
+                ->exists();
+
+        if($exists){
+            return redirect('Student/feed')->with('message', 'You already applied for this vacancy!');
+        }else{
+            $apply = new StudentApply();
+            $apply->student_id = $student_id;
+            $apply->post_id = $vacancy_id;
+            $apply->save();
+
+            $applymessage = new Message();
+            $applymessage->sender_id = $student_id;
+            $applymessage->recipient_id = $vacancy->company_id;
+            $applymessage->sender_type = 'student';
+            $applymessage->recipient_type = 'company';
+            $applymessage->message = 'I want to apply for the vacancy that you had posted on ' . $vacancy->jobPost. ' in the ' . $vacancy->jobField . ' field at ' . $vacancy->updated_at->timezone('+05:30') ;
+            $applymessage->save();
+
+            $applynotification = new CompanyNotifications();
+            $applynotification->company_id = $vacancy->company_id;
+            $applynotification->notification = $student->firstname .' ' . $student->lastname .' has applied to your vacancy on '. $vacancy->jobPost. ' in the ' . $vacancy->jobField . ' field that you posted at ' . $vacancy->updated_at->timezone('+05:30'). '.' ;
+            $applynotification->save();
+
+            $stuNotification = new StudentNotifications();
+            $stuNotification->student_id = $student_id;
+            $stuNotification->notification = 'You have applied to the vacancy on '. $vacancy->jobPost. ' in the ' . $vacancy->jobField . ' field that posted by '.$companyName .' at ' . $vacancy->updated_at->timezone('+05:30'). '.';
+            $stuNotification->save();
+
+            return redirect('Student/feed')->with('message', 'You applied for the vacancy successfully!');
+        } 
+
+    }
+
+    public function Notification(){
+        $user_id = Auth::guard('student')->user()->id;
+        $newNotifications = StudentNotifications::where('student_id', $user_id)
+        ->where('is_read', false)
+        ->get();
+
+        $oldNotifications = StudentNotifications::where('student_id', $user_id)
+        ->where('is_read', true)
+        ->get();
+
+        return view('Student.stuNotifications', compact('newNotifications', 'oldNotifications'));
+    }
+
+    public function ReadNotification(Request $request){
+        $notification = StudentNotifications::findOrFail( $request->notification_id);
+        $notification->update(['is_read' => 1]);
         return redirect()->back();
     }
 

@@ -1,4 +1,4 @@
-@extends('Company.layout')
+@extends('Student.layout')
 
 @section('title', 'Notifications')
 
@@ -19,7 +19,7 @@
                          {{$newNotification->notification}} 
                         <br><small> {{$newNotification->updated_at}} </small><br>
                         <br>
-                        <a href="{{route('Company.readNotification', ['notification_id'=> $newNotification->id])}}"> <button class="removenotification">Mark as read</button></a>
+                        <a href="{{route('Student.readNotification', ['notification_id'=> $newNotification->id])}}"> <button class="removenotification">Mark as read</button></a>
                     </li>
                     </div><br>	
                 </div>
